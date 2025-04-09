@@ -1,5 +1,5 @@
 # Etapa 1: Build
-FROM registry.redhat.io/ubi8/nodejs-16 as builder
+FROM registry.redhat.io/ubi8/nodejs-18
 
 WORKDIR /app
 
