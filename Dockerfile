@@ -7,9 +7,12 @@ WORKDIR /app
 RUN mkdir -p /app/node_modules && chmod -R 777 /app
 
 
-# Copiar archivos y luego dar permisos
-COPY package.json package-lock.json* ./
-RUN chmod -R 777 /app
+# Copia los archivos uno por uno (evita permisos heredados de Git)
+COPY package.json ./
+COPY package-lock.json ./
+
+# Ahora sí puedes cambiar permisos porque tú controlas los archivos
+RUN chmod 777 package.json package-lock.json
 
 RUN npm install
 
