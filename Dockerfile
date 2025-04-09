@@ -6,7 +6,11 @@ WORKDIR /app
 # Solución a permisos
 RUN mkdir -p /app/node_modules && chmod -R 777 /app
 
+
+# Copiar archivos y luego dar permisos
 COPY package.json package-lock.json* ./
+RUN chmod -R 777 /app
+
 RUN npm install
 
 COPY . .
