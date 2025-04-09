@@ -1,16 +1,16 @@
 # Etapa 1: Build
-FROM node:18-alpine AS builder
+FROM registry.redhat.io/ubi8/nodejs-16 as builder
 
 WORKDIR /app
 
-COPY package.json package-lock.json* ./  
+COPY package.json package-lock.json* ./
 RUN npm install
 
 COPY . .
 RUN npm run build
 
 # Etapa 2: Producción
-FROM node:18-alpine AS runner
+FROM registry.redhat.io/ubi8/nodejs-16-minimal as runner
 
 WORKDIR /app
 
