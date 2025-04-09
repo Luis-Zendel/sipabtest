@@ -3,6 +3,9 @@ FROM registry.redhat.io/ubi8/nodejs-18
 
 WORKDIR /app
 
+# Solución a permisos
+RUN mkdir -p /app/node_modules && chmod -R 777 /app
+
 COPY package.json package-lock.json* ./
 RUN npm install
 
